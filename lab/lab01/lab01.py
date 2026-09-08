@@ -42,10 +42,13 @@ def falling(n, k):
     1
     """
     "*** YOUR CODE HERE ***"
-    a, b = 0, 1
+    a, b = 1, 1
     while k > 0:
-        a = n * (n-1)
+        a = a * n
         k -= 1
+        n -= 1
+        if k == 0:
+            break
     else:
         a = 1
     return a
@@ -79,7 +82,7 @@ def divisible_by_k(n, k):
     while a <= k:
         if n % a == 0:
             return a
-        a += 1
+        a += 1  
     else:
         a = 0
         return 0
