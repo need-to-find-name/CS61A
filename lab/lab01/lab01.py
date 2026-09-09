@@ -78,11 +78,16 @@ def divisible_by_k(n, k):
     0
     """
     "*** YOUR CODE HERE ***"
-    a = 1
-    while a <= k:
-        if n % a == 0:
-            return a
-        a += 1  
+    a, b = 1, 0
+    if k <= n :
+        while a <= n:
+            if a % k == 0:
+                print(a)
+                ##return a
+                b += 1
+            
+            a += 1
+        return b  
     else:
         a = 0
         return 0
@@ -103,6 +108,13 @@ def sum_digits(y):
     6
     """
     "*** YOUR CODE HERE ***"
+    a = 0
+    n = 1
+
+    while y / 10 ** (n-1) >= 1 :
+        a += y // 10 ** (n-1) % 10
+        n += 1
+    return a
     
 
 
@@ -122,4 +134,37 @@ def double_eights(n):
     False
     """
     "*** YOUR CODE HERE ***"
+   
+    c = 1
+    d = 0
 
+    while n / 10 ** (c-1) >= 1 :
+        if n // 10 ** (c-1) % 10 == 8:
+            d += 1
+        else:
+            d = 0
+        if d == 2:
+            a = True
+            return a
+        else:
+            a = False
+        c += 1
+
+    return a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
