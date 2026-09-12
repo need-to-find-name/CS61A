@@ -14,7 +14,7 @@ def roll_dice(num_rolls, dice=six_sided):
     """Simulate rolling the DICE exactly NUM_ROLLS > 0 times. Return the sum of
     the outcomes unless any of the outcomes is 1. In that case, return 1.
 
-    num_rolls:  The number of dice rolls that will be made.
+    num_rolls:  The 4number of dice rolls that will be made.
     dice:       A function that simulates a single dice roll outcome. Defaults to the six sided dice.
     """
     # These assert statements ensure that num_rolls is a positive integer.
@@ -22,7 +22,17 @@ def roll_dice(num_rolls, dice=six_sided):
     assert num_rolls > 0, "Must roll at least once."
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
+    points, final_outcome = 0, 0
+    while num_rolls > 0:
+        outcome = dice()
+        points, num_rolls = points + outcome, num_rolls - 1
+        if outcome == 1:
+            final_outcome = 1
+    if final_outcome == 1:
+        return 1
+    return points
     # END PROBLEM 1
+
 
 
 def boar_brawl(player_score, opponent_score):
@@ -34,6 +44,8 @@ def boar_brawl(player_score, opponent_score):
     """
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    result = 3 * abs(player_score % 10 - opponent_score // 10 % 10)
+    return max(result, 1)
     # END PROBLEM 2
 
 
@@ -52,6 +64,10 @@ def take_turn(num_rolls, player_score, opponent_score, dice=six_sided):
     assert num_rolls <= 10, "Cannot roll more than 10 dice."
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if num_rolls == 0:
+        return boar_brawl(player_score, opponent_score)
+    else:
+        return roll_dice(num_rolls, dice)
     # END PROBLEM 3
 
 
