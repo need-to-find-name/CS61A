@@ -103,7 +103,7 @@ def product_using_accumulate(n, term):
     """
     return accumulate(mul, 1, n, term)
 
-
+"""solution #1 """
 def make_repeater(f, n):
     """Returns the function that computes the nth application of f.
 
@@ -123,12 +123,54 @@ def make_repeater(f, n):
         return f
     
     def g(y):
-        return f(make_repeater(f, n-1)(y))
+        return f(make_repeater(f, n-1)(y)) 
 
     return g
-    
-    
 
+"""solution #2"""    
+def make_repeater(f, n):
+    """Returns the function that computes the nth application of f.
+
+    >>> add_three = make_repeater(increment, 3)
+    >>> add_three(5)
+    8
+    >>> make_repeater(triple, 5)(1) # 3 * (3 * (3 * (3 * (3 * 1))))
+    243
+    >>> make_repeater(square, 2)(5) # square(square(5))
+    625
+    >>> make_repeater(square, 3)(5) # square(square(square(5)))
+    390625
+    """
+    "*** YOUR CODE HERE ***"
+
+    def repeater(x):
+        k = 0 
+        while k <= n:
+            x, k = f(x), k + 1
+        return x
+    return repeater
+
+
+def make_power(f, n):
+    """
+    Return a function that applies f to x repeatedly n times.
+
+    >>> double = make_power(lambda x: x * 2, 3)
+    >>> double(5)
+    40
+    >>> square = make_power(lambda x: x * x, 2)
+    >>> square(3)
+    81
+    """
+    # YOUR CODE HERE
+    def g(x):
+        k = 0
+        while k < n:
+            x, k = f(x), k + 1
+        return x
+    return g
+
+ 
     
 
 
