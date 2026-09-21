@@ -199,6 +199,9 @@ def always_roll(n):
 
     # BEGIN PROBLEM 6
     "*** YOUR CODE HERE ***"
+    def g(x, y):
+        return n
+    return g
     # END PROBLEM 6
 
 
@@ -231,6 +234,19 @@ def is_always_roll(strategy, goal=GOAL):
     """
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
+    score = 0
+    while score < goal:
+        opponent_score = 0
+        last = strategy(score, opponent_score)
+        while opponent_score < goal:
+            current = strategy(score, opponent_score)
+            if last != current:
+                return False
+            last = current 
+            opponent_score += 1
+        score += 1
+    return True
+        
     # END PROBLEM 7
 
 
@@ -248,6 +264,15 @@ def make_averaged(original_function, times_called=1000):
 
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    def g(*args):
+        total, k = 0, 0
+        while k < times_called:
+            total += original_function(*args)
+            k += 1
+        average = total / times_called
+        return average
+    return g
+
     # END PROBLEM 8
 
 
@@ -261,6 +286,15 @@ def max_scoring_num_rolls(dice=six_sided, times_called=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    num_rolls = 2
+    max_scoring_num_rolls = 1
+    last = make_averaged(roll_dice, times_called)(1, dice)
+    while num_rolls <= 10:
+        current = make_averaged(roll_dice, times_called)(num_rolls, dice)
+        if current > last:
+            max_scoring_num_rolls = num_rolls
+        num_rolls, last = num_rolls + 1, current
+    return max_scoring_num_rolls
     # END PROBLEM 9
 
 
@@ -306,7 +340,10 @@ def boar_strategy(score, opponent_score, threshold=11, num_rolls=6):
     points, and returns NUM_ROLLS otherwise. Ignore the Sus Fuss rule.
     """
     # BEGIN PROBLEM 10
-    return num_rolls  # Remove this line once implemented.
+    if boar_brawl(score, opponent_score) >= threshold:
+        return 0
+    else:
+        return num_rolls
     # END PROBLEM 10
 
 
@@ -315,7 +352,11 @@ def sus_strategy(score, opponent_score, threshold=11, num_rolls=6):
     THRESHOLD points, and returns NUM_ROLLS otherwise. Consider both the Boar Brawl and
     Suss Fuss rules."""
     # BEGIN PROBLEM 11
-    return num_rolls  # Remove this line once implemented.
+    if sus_update(0, score, opponent_score) - score >= threshold:
+        return 0
+    else:
+        return num_rolls
+
     # END PROBLEM 11
 
 
