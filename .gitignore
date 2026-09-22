@@ -1,0 +1,16 @@
+# Python 编译产物
+__pycache__/
+*.py[cod]
+
+# okpy 的本地状态 / 做题记录 / SQLite 的 -shm · -wal 临时文件
+# 注意：这里的模式不是 *.ok —— 课程自带的 hw01.ok / lab01.ok 等作业配置必须保留
+.ok_*
+
+# uv 的虚拟环境（uv 已在 .venv 内部放了 .gitignore，这里再显式写一条更好读）
+.venv/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

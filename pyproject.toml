@@ -1,0 +1,13 @@
+[project]
+name = "cs61a"
+version = "0.1.0"
+description = "Personal CS61A study repository"
+readme = "README.md"
+authors = [
+    { name = "need-to-find-name", email = "xidaniel761104@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.uv]
+package = false
